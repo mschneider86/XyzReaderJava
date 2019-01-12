@@ -42,8 +42,8 @@ public class ArticleDetailActivity extends AppCompatActivity
             mCurrentId = savedInstanceState.getLong(EXTRA_CURRENT_ID);
         }
 
-        mPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
-        mPager.setAdapter(mPagerAdapter);
+        /*mPagerAdapter = new MyPagerAdapter(getSupportFragmentManager(), mCursor);
+        mPager.setAdapter(mPagerAdapter);*/
         mPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageScrollStateChanged(int state) {
@@ -81,6 +81,8 @@ public class ArticleDetailActivity extends AppCompatActivity
                 if (cursor.getLong(ArticleLoader.Query._ID) == mCurrentId) {
                     final int position = cursor.getPosition();
                     mCursor = cursor;
+                    mPagerAdapter = new MyPagerAdapter(getSupportFragmentManager(), mCursor);
+                    mPager.setAdapter(mPagerAdapter);
                     mPagerAdapter.notifyDataSetChanged();
                     mPager.setCurrentItem(position, false);
                     break;
@@ -96,21 +98,5 @@ public class ArticleDetailActivity extends AppCompatActivity
         mPagerAdapter.notifyDataSetChanged();
     }
 
-    private class MyPagerAdapter extends FragmentStatePagerAdapter {
-        MyPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            mCursor.moveToPosition(position);
-            return ArticleDetailFragment.newInstance(mCursor.getLong(ArticleLoader.Query._ID));
-        }
-
-        @Override
-        public int getCount() {
-            return (mCursor != null) ? mCursor.getCount() : 0;
-        }
-    }
 }
 

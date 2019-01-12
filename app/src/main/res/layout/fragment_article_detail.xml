@@ -26,56 +26,7 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true">
-
-                <ImageView
-                    android:id="@+id/iv_photo"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fitsSystemWindows="true"
-                    android:scaleType="centerCrop"
-                    tools:ignore="ContentDescription" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/photo_background_protection" />
-
-                <LinearLayout
-                    android:id="@+id/linear_meta_bar"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/expanded_toolbar_height"
-                    android:layout_gravity="bottom"
-                    android:elevation="@dimen/app_bar_elevation"
-                    android:orientation="vertical"
-                    android:paddingBottom="@dimen/material_layout_keylines_screen_edge_margin"
-                    android:paddingLeft="@dimen/activity_horizontal_margin"
-                    android:paddingRight="@dimen/activity_horizontal_margin"
-                    android:paddingTop="@dimen/material_layout_keylines_screen_edge_margin">
-
-                    <TextView
-                        android:id="@+id/tv_article_title"
-                        style="?android:attr/textAppearanceLarge"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:textColor="@color/colorWhite"
-                        android:textStyle="bold"
-                        android:visibility="invisible" />
-
-                    <TextView
-                        android:id="@+id/tv_article_author"
-                        style="?android:attr/textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorWhite" />
-
-                </LinearLayout>
-
-            </FrameLayout>
+            <include layout="@layout/frame_article_details"/>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/tb_detail"
@@ -91,34 +42,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
-        android:id="@+id/movie_detail_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_article_body"
-                style="?android:attr/textAppearanceMedium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/material_layout_keylines_screen_edge_margin"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/material_layout_keylines_screen_edge_margin"
-                android:autoLink="web"
-                android:linksClickable="true"
-                android:paddingTop="@dimen/material_layout_keylines_screen_edge_margin"
-                android:textColor="@android:color/black" />
-
-        </LinearLayout>
-
-    </android.support.v4.widget.NestedScrollView>
+    <include layout="@layout/article_body"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_share"
